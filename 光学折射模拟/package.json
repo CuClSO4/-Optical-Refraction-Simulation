@@ -1,0 +1,18 @@
+{
+  "name": "optics-lab",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "二维几何光学折射模拟器：可调折射率的透镜与几何体、单色/复色光源、单束/多束光线。零运行时依赖。",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node server.mjs",
+    "build": "node --experimental-strip-types tools/build-js.ts && node --experimental-strip-types tools/normalize-imports.ts",
+    "test": "node test/run-all.mjs",
+    "bench": "node --experimental-strip-types test/bench.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22.6"
+  }
+}

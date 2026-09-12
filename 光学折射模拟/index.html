@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>光学折射实验室 · 2D 光线折射模拟器</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+    <meta
+      name="description"
+      content="二维几何光学模拟器：可调折射率的凸/凹透镜、棱镜、玻璃板与自定义多边形，单色与复色（色散）光源，单束与多束光线，实时矢量折射 + 菲涅耳计算。"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div class="brand-text">
+            <h1>光学折射实验室</h1>
+            <p>二维几何光学 · 矢量折射 · 菲涅耳分光</p>
+          </div>
+        </div>
+        <div class="readouts" role="status" aria-live="off">
+          <div class="readout"><span class="k">光线</span><b id="stat-rays">0</b></div>
+          <div class="readout"><span class="k">线段</span><b id="stat-segments">0</b></div>
+          <div class="readout"><span class="k">总光线</span><b id="stat-traced">0</b></div>
+          <div class="readout"><span class="k">帧时</span><b id="stat-frame">0.0 ms</b></div>
+        </div>
+      </header>
+
+      <aside id="library" class="library" aria-label="元器件库"></aside>
+
+      <main class="stage">
+        <div class="canvas-wrap">
+          <canvas id="view" width="1280" height="720"></canvas>
+          <pre id="crash" class="crash" hidden></pre>
+          <div class="hint" id="hint">
+            左键拖空白处平移画布 · 滚轮缩放（以光标为中心）· 双击空白处复位 · 拖动元件可移动，Shift+滚轮缩放元件
+          </div>
+        </div>
+      </main>
+
+      <aside id="panel" class="panel" aria-label="属性面板"></aside>
+
+      <footer class="legend">
+        <span><i class="dot dot-arc"></i>凸 / 凹 / 弯月透镜：Shift + 拖动改变曲率</span>
+        <span><i class="dot dot-poly"></i>棱镜 / 玻璃板 / 多边形：拖动即可移动</span>
+        <span><i class="dot dot-src"></i>光源：拖圆点移动，拖箭头旋转</span>
+        <span><i class="dot dot-view"></i>画布：拖空白处平移，滚轮缩放，双击复位</span>
+      </footer>
+    </div>
+    <!--
+      加载 dist/（纯 JavaScript 版本）而不是 src/ 里的 TypeScript 源码：
+      这样任何现代浏览器都能运行，不要求浏览器支持原生 TypeScript 类型剥离。
+      重新生成： node --experimental-strip-types tools/build-js.ts
+    -->
+    <script type="module" src="/dist/boot.js"></script>
+  </body>
+</html>
