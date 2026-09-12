@@ -14,7 +14,7 @@
 
 ## 怎么打开（手把手）
 
-项目目录是 **`D:\sxzcode\harness`**。因为这是一个网页，需要一个静态服务器把它“端”给浏览器
+因为这是一个网页，需要一个静态服务器把它“端”给浏览器
 （直接双击 `index.html` 用 `file://` 打开**不行**，浏览器会拦住 ES module 的跨源加载）。
 
 ### 最省事的办法：双击 `start.cmd`
@@ -32,22 +32,8 @@
 `node server.mjs` 只在**当前目录**里找文件。如果你在别处（比如 `C:\Users\admin`）执行，就会看到
 `Error: Cannot find module 'C:\Users\admin\server.mjs'` —— 所以第一步必须先切换目录：
 
-#### 第 1 步：进入项目目录
 
-```powershell
-# PowerShell / CMD
-cd /d D:\sxzcode\harness
-```
-
-```bash
-# Git Bash / WSL
-cd /d/sxzcode/harness
-```
-
-> 如果 `D:` 盘不存在或路径不同，请把命令里的路径换成你实际存放项目的位置。
-> 提示：在文件资源管理器里打开项目文件夹，地址栏输入 `cmd` 回车，就能直接开在这个目录下。
-
-#### 第 2 步：启动服务器
+#### 第 1 步：启动服务器
 
 ```powershell
 node server.mjs
@@ -57,7 +43,7 @@ node server.mjs
 
 ```
 光学折射实验室 → http://127.0.0.1:5180/
-静态根目录: D:\sxzcode\harness
+静态根目录: （目录）
 ```
 
 **保持这个窗口开着**（关掉窗口 = 关掉服务器）。默认端口 5180，被占用时可以换：
@@ -66,7 +52,7 @@ node server.mjs
 node server.mjs --port 5200
 ```
 
-#### 第 3 步：在浏览器里打开
+#### 第 2 步：在浏览器里打开
 
 在 Chrome / Edge 的地址栏输入（或按住 Ctrl 点击链接）：
 
@@ -74,7 +60,7 @@ node server.mjs --port 5200
 
 看到深色界面、左侧参数面板、中间出现光线，就成功了。
 
-#### 第 4 步：关闭
+#### 第 3 步：关闭
 
 在服务器窗口按 `Ctrl + C`。
 
@@ -82,7 +68,7 @@ node server.mjs --port 5200
 
 | 现象 | 原因与解决 |
 | --- | --- |
-| `Cannot find module '...\server.mjs'` | 当前目录不对，先 `cd /d D:\sxzcode\harness`（见第 1 步） |
+| `Cannot find module '...\server.mjs'` | 当前目录不对，先 `（目录）`（见第 1 步） |
 | 双击 `start.cmd` 后出现 `'鍔ㄥ垏...' 不是内部或外部命令` 之类的乱码 | 批处理文件不能含非 ASCII 字符（cmd 按 GBK 读）。用 `start.cmd` 的原版，或按上文说明加 `chcp 65001` |
 | `Error: listen EADDRINUSE: address already in use 127.0.0.1:5180` | **端口已被占用——通常说明服务器本来就在跑**。直接在浏览器打开 http://127.0.0.1:5180/ 即可；确实要再起一个就换端口 `node server.mjs --port 5200` |
 | 页面白屏 / 控制台报模块加载失败 | 用 `file://` 直接打开了 html。必须走第 2 步的服务器地址 |
@@ -117,7 +103,6 @@ python -m http.server 5180   # 注意：Python 会给 .ts 发 text/plain，可�
 ### 运行测试（可选，同样要先进入项目目录）
 
 ```powershell
-cd /d D:\sxzcode\harness
 node test\run-all.mjs    # 跑完全部测试（48 项断言）
 node --experimental-strip-types test\bench.ts   # 各预设的追踪耗时基准
 ```
